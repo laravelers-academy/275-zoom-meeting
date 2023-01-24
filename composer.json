@@ -1,0 +1,19 @@
+{
+    "name": "laravelers-academy/zoom-meeting",
+    "description": "Integración de la API de Zoom para la administración de reuniones de mi cuenta de Zoom",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Homero Raul",
+            "email": "h.raulvc@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "LaravelersAcademy\\ZoomMeeting\\": "src/"
+        }
+    }
+}
