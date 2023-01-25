@@ -10,10 +10,20 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
     "autoload": {
         "psr-4": {
             "LaravelersAcademy\\ZoomMeeting\\": "src/"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "8.x-dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelersAcademy\\ZoomMeeting\\Providers\\ZoomMeetingServiceProvider",
+                "LaravelersAcademy\\ZoomMeeting\\Providers\\ZoomRouteServiceProvider"
+            ]
         }
     }
 }
