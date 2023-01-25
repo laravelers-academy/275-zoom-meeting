@@ -6,6 +6,7 @@ use LaravelersAcademy\ZoomMeeting\Zoom\Authorization;
 use LaravelersAcademy\ZoomMeeting\Exceptions\ZoomMeetingValidationException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class Meeting extends Authorization
 {
@@ -90,9 +91,12 @@ class Meeting extends Authorization
 
         $validator = Validator::make($data, [
             'topic'      => 'required|string|max:255',
-            'start_time' => 'required|string',
+            'start_time' => 'required|string|date',
             'duration'   => 'required',
-            'timezone'   => 'required',
+            'timezone'   => [
+                'required',
+                Rule::in(config('zoom.timezones'))
+            ],
             'password'   => 'required|min:6',
         ]);
 
