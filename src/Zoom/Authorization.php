@@ -74,7 +74,7 @@ class Authorization
 		 */
 		if(!array_key_exists('error', $this->authResponse)) return $this->authResponse['access_token'];
 
-		return null;
+		throw new ZoomAuthorizationException;
 
 	}
 
