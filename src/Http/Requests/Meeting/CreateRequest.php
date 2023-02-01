@@ -12,7 +12,17 @@ class CreateRequest extends FormRequest
     protected function prepareForValidation()
     {
 
-        // Dar formato a la fecha
+        // Definición de la cuenta
+
+        $account = Account::findOrFail($this->account_id);
+
+        $env = [
+            'account' => $account->account,
+            'client' => $account->client,
+            'secret' => $account->secret
+        ];
+
+        // Parámetros para la creación de la reunión
 
         $startTime = Carbon::parse($this->start_time)->toIso8601ZuluString();
 
@@ -27,20 +37,6 @@ class CreateRequest extends FormRequest
             'timezone',
             'password'
         ]);
-
-        $env = [];
-
-        if(!config('zoom.use_default_env')){
-
-            $account = Account::find($this->account_id);
-
-            $env = [
-                'account' => $account->account,
-                'client' => $account->client,
-                'secret' => $account->secret
-            ];
-
-        }
 
         $this->merge([
             'params' => $params,
@@ -60,7 +56,7 @@ class CreateRequest extends FormRequest
     {
 
         return [
-            'account_id' => 'required',
+            //
         ];
 
     }

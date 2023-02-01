@@ -24,16 +24,8 @@ class MeetingController extends Controller
     public function show(Meeting $meeting, ShowRequest $request)
     {
 
-        if(config('zoom.use_default_env')) {
-
-            $zoomMeeting = ZoomMeeting::get($meeting->payload['id']);
-
-        } else {
-
-            $zoomMeeting = ZoomMeeting::set($request->env)
-                                ->get($meeting->payload['id']);              
-
-        }
+        $zoomMeeting = ZoomMeeting::set($request->env)
+                            ->get($meeting->payload['id']); 
 
         return [
             'meeting' => $meeting,
@@ -45,16 +37,8 @@ class MeetingController extends Controller
     public function create(CreateRequest $request)
     {   
 
-        if(config('zoom.use_default_env')) {
-
-            $zoomMeeting = ZoomMeeting::create($request->params);
-
-        } else {
-
-            $zoomMeeting = ZoomMeeting::set($request->env)
-                                ->create($request->params);
-
-        }
+        $zoomMeeting = ZoomMeeting::set($request->env)
+                            ->create($request->params);
 
         return Meeting::create([
             'payload' => $zoomMeeting,
@@ -66,18 +50,8 @@ class MeetingController extends Controller
     public function update(Meeting $meeting, UpdateRequest $request)
     {
 
-        if(config('zoom.use_default_env')) {
-
-            $zoomMeeting = ZoomMeeting::update(
-                $meeting->payload['id'], 
-                $request->params);
-
-        } else {
-
-            $zoomMeeting = ZoomMeeting::set($request->env)
-                                ->update($meeting->payload['id'], $request->params);
-
-        }
+        $zoomMeeting = ZoomMeeting::set($request->env)
+                            ->update($meeting->payload['id'], $request->params);
 
         return $meeting->update([
             'payload' => $zoomMeeting
@@ -88,16 +62,8 @@ class MeetingController extends Controller
     public function delete(Meeting $meeting, DeleteRequest $request)
     {
 
-        if(config('zoom.use_default_env')) {
-
-            $zoomMeeting = ZoomMeeting::delete($meeting->payload['id']);
-
-        } else {
-
-            $zoomMeeting = ZoomMeeting::set($request->env)
-                                ->delete($meeting->payload['id']);
-
-        }
+        $zoomMeeting = ZoomMeeting::set($request->env)
+                            ->delete($meeting->payload['id']);
 
         return $meeting->delete();
 

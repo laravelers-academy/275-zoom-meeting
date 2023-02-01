@@ -10,19 +10,13 @@ class DeleteRequest extends FormRequest
     protected function prepareForValidation()
     {
 
-        $env = [];
+        $account = Account::findOrFail($this->account_id);
 
-        if(!config('zoom.use_default_env')){
-
-            $account = Account::find($this->account_id);
-
-            $env = [
-                'account' => $account->account,
-                'client' => $account->client,
-                'secret' => $account->secret
-            ];
-
-        }
+        $env = [
+            'account' => $account->account,
+            'client' => $account->client,
+            'secret' => $account->secret
+        ];
 
         $this->merge([
             'env' => $env

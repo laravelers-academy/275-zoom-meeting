@@ -2,7 +2,7 @@
 
 namespace LaravelersAcademy\ZoomMeeting\Http\Requests\Meeting;
 
-use LaravelersAcademy\ZoomMeeting\Models\Account;
+use LaravelersAcademy\ZoomMeeting\Models\Meeting;
 use Illuminate\Foundation\Http\FormRequest;
 use Carbon\Carbon;
 
@@ -11,8 +11,20 @@ class UpdateRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+
+        // $env
         
-        // Dar formato a la fecha
+        $meeting = Meeting::findOrFail($this->meeting_id);
+
+        $account = $meeting->account;
+ 
+        $env = [
+            'account' => $account->account,
+            'client' => $account->client,
+            'secret' => $account->secret
+        ];
+
+        // $params
 
         $startTime = Carbon::parse($this->start_time)->toIso8601ZuluString();
 
@@ -27,20 +39,6 @@ class UpdateRequest extends FormRequest
             'timezone',
             'password'
         ]);
-
-        $env = [];
-
-        if(!config('zoom.use_default_env')){
-
-            $account = Account::find($this->account_id);
-
-            $env = [
-                'account' => $account->account,
-                'client' => $account->client,
-                'secret' => $account->secret
-            ];
-
-        }
 
         $this->merge([
             'params' => $params,
@@ -57,7 +55,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'meeting_id' => 'required',
+            //
         ];
     }
 
