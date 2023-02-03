@@ -10,7 +10,9 @@ class DeleteRequest extends FormRequest
     protected function prepareForValidation()
     {
 
-        $account = Account::findOrFail($this->account_id);
+        $meeting = Meeting::findOrFail($this->meeting_id);
+
+        $account = $meeting->account;
 
         $env = [
             'account' => $account->account,

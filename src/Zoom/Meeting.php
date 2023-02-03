@@ -11,6 +11,13 @@ use Illuminate\Validation\Rule;
 class Meeting extends Authorization
 {
 
+    public function hola()
+    {
+
+        return 'Hola mundo!';
+
+    }
+
 
 	public function get($meetingId)
     {
