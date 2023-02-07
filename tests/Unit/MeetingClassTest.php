@@ -44,5 +44,57 @@ class MeetingClassTest extends TestCase
 
 	}
 
+	/** @test */
+	public function testGetMethodWithGlobalCredentials()
+	{
+
+	    $meetingId = getenv('zoom_meeting_id');
+
+	    $response = Meeting::get($meetingId);
+
+	    $this->assertEquals($response['id'], $meetingId);
+
+	}
+
+	/** @test */
+	public function testCreateMeetingWithCustomCredentials()
+	{
+
+		$data = [
+	        'topic' => 'Mi reunión desde la API',
+	        'start_time' => '023-01-27T02:00:00Z',
+	        'duration' => 60,
+	        'timezone' => 'America/Mexico_City',
+	        'password' => '123456789',
+	    ];
+	    
+	    $response = Meeting::set([
+	        'account' => getenv('zoom_account'),
+			'client' => getenv('zoom_client'),
+			'secret' => getenv('zoom_secret'),
+	    ])->create($data);
+
+	    $this->assertEquals($response['topic'], $data['topic']);
+
+	}
+
+	/** @test */
+	public function testCreateMeetingWithGlobalCredentials()
+	{
+
+		$data = [
+	        'topic' => 'Mi reunión desde la API',
+	        'start_time' => '023-01-27T02:00:00Z',
+	        'duration' => 60,
+	        'timezone' => 'America/Mexico_City',
+	        'password' => '123456789',
+	    ];
+	    
+	    $response = Meeting::create($data);
+
+	    $this->assertEquals($response['topic'], $data['topic']);
+
+	}
+
 }
 
