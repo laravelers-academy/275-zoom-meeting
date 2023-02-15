@@ -3,7 +3,6 @@
 namespace LaravelersAcademy\ZoomMeeting\Http\Controllers;
 
 use LaravelersAcademy\ZoomMeeting\Facades\Meeting as ZoomMeeting;
-
 use LaravelersAcademy\ZoomMeeting\Models\Meeting;
 use Illuminate\Http\Request;
 use LaravelersAcademy\ZoomMeeting\Http\Requests\Meeting\ShowRequest;

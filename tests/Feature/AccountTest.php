@@ -1,5 +1,7 @@
 <?php
 
+namespace LaravelersAcademy\ZoomMeeting\Tests\Feature;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use LaravelersAcademy\ZoomMeeting\Tests\TestCase;
@@ -10,23 +12,25 @@ class AccountTest extends TestCase
 
     use RefreshDatabase;
 
+    /** @test */
     public function testCreateAccount()
     {
 
         $data = [
             'account' => getenv('zoom_account'),
-			'client' => getenv('zoom_client'),
-			'secret' => getenv('zoom_secret'),
+    		'client' => getenv('zoom_client'),
+    		'secret' => getenv('zoom_secret'),
             'owner_id' => 1
         ];
 
         $this->postJson('/api/zoom/account/create', $data)
-			->assertStatus(201);
+    		->assertStatus(201);
 
         $this->assertDatabaseHas('zoom_accounts', $data);
 
     }
 
+    /** @test */
     public function testShowAccount()
     {
         $account = Account::factory()->create();
@@ -43,6 +47,7 @@ class AccountTest extends TestCase
                  ]);
     }
 
+    /** @test */
     public function testUpdateAccount()
     {
         $account = Account::factory()->create();
@@ -60,6 +65,7 @@ class AccountTest extends TestCase
         $this->assertDatabaseHas('zoom_accounts', $data);
     }
 
+    /** @test */
     public function testDeleteAccount()
     {
         $account = Account::factory()->create();

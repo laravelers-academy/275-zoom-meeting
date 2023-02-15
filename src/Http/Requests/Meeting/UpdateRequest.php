@@ -13,10 +13,8 @@ class UpdateRequest extends FormRequest
     {
 
         // $env
-        
-        $meeting = Meeting::findOrFail($this->meeting_id);
 
-        $account = $meeting->account;
+        $account = $this->meeting->account;
  
         $env = [
             'account' => $account->account,
