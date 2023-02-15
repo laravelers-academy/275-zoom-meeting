@@ -36,7 +36,7 @@ class AccountController extends Controller
     public function update(Account $account, UpdateRequest $request)
     {
 
-        return Account::update($request->all());
+        return $account->update($request->all());
 
     }
 

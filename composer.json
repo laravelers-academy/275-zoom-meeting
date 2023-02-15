@@ -12,7 +12,8 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "LaravelersAcademy\\ZoomMeeting\\": "src/"
+            "LaravelersAcademy\\ZoomMeeting\\": "src/",
+            "LaravelersAcademy\\ZoomMeeting\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
@@ -23,7 +24,9 @@
     "require-dev": {
         "orchestra/testbench": "^7",
         "phpunit/phpunit": "^9",
-        "guzzlehttp/guzzle": "^7"
+        "guzzlehttp/guzzle": "^7",
+        "laravel/legacy-factories": "^1.0@dev",
+        "laravel/sanctum": "^4.0@dev"
     },
     "extra": {
         "laravel": {
@@ -32,5 +35,8 @@
                 "LaravelersAcademy\\ZoomMeeting\\Providers\\ZoomRouteServiceProvider"
             ]
         }
+    },
+    "require": {
+        
     }
 }

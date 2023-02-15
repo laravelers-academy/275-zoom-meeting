@@ -19,6 +19,11 @@ class Account extends Model
         'owner_id'
     ];
 
+    protected static function newFactory()
+    {
+        return \LaravelersAcademy\ZoomMeeting\Database\Factories\AccountFactory::new();
+    }
+
     public function owner()
     {
         return $this->belongsTo(config('zoom.related_owner'), 'owner_id');

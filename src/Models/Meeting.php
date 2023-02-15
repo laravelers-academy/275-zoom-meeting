@@ -21,6 +21,11 @@ class Meeting extends Model
         'payload' => 'json'
     ];
 
+    protected static function newFactory()
+    {
+        return \LaravelersAcademy\ZoomMeeting\Database\Factories\MeetingFactory::new();
+    }
+
     public function account()
     {
         return $this->belongsTo('LaravelersAcademy\ZoomMeeting\Models\Account', 'account_id');
