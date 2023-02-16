@@ -27,4 +27,4 @@ jobs:
       run: vendor/bin/phpunit
 
     - name: Verify PHPUnit configuration
-      run: vendor/bin/phpunit --version
+      run: vendor/bin/phpunit --version --configuration phpunit.xml
