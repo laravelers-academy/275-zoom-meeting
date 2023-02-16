@@ -1,0 +1,33 @@
+name: Tests
+
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+
+    - name: Install dependencies
+      run: composer install --no-interaction
+
+    - name: Run tests
+      run: vendor/bin/phpunit
+
+    - name: Verify PHPUnit configuration
+      run: vendor/bin/phpunit --version --configuration /home/runner/work/275-zoom-meeting/275-zoom-meeting/phpunit.xml
+
+    - name: Print Environment Variables
+      run: printenv

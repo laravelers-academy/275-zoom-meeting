@@ -27,7 +27,6 @@ class AccountTest extends TestCase
     		->assertStatus(201);
 
         $this->assertDatabaseHas('zoom_accounts', $data);
-
     }
 
     /** @test */
