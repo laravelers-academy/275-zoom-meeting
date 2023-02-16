@@ -28,3 +28,7 @@ jobs:
 
     - name: Verify PHPUnit configuration
       run: vendor/bin/phpunit --version
+
+    - name: Print Environment Variables
+      run: |
+        printenv
