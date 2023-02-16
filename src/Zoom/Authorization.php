@@ -38,6 +38,8 @@ class Authorization
 
 		$this->authResponse = $this->getAuthResponse();
 
+		dump($this->authResponse, $params);
+
 		$this->accessToken =  $this->getAccessToken();
 
 		$this->envSet = $this->accessToken != null;
