@@ -27,8 +27,12 @@ jobs:
       run: vendor/bin/phpunit
 
     - name: Verify PHPUnit configuration
+<<<<<<< HEAD
       run: vendor/bin/phpunit --version
 
     - name: Print Environment Variables
       run: |
         printenv
+=======
+      run: vendor/bin/phpunit --version --configuration /home/runner/work/275-zoom-meeting/275-zoom-meeting/phpunit.xml
+>>>>>>> fbc1b85f75bee3ac11a9e705512b316c76daab14
